@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.mapper.VipMapper" >
+
+    <select id="queryTreeNode" parameterType="int" resultType="com.jk.model.Tree">
+              SELECT * FROM tree where pid = #{id}
+    </select>
+
+
+
+    <select id="queryCount"  resultType="Long">
+
+        select count(vip_id)  from vip where 1=1
+
+
+
+    </select>
+
+
+    <sql id="tiaocha">
+
+        <if test="vip.vip_name!= null and vip.vip_name != ''">
+            and vip_name like '%${vip.vip_name}%'
+        </if>
+
+        <!--
+                   <if test="vip.startDate !=null and vip.startDate != ''">
+                       and cdDate &gt;= #{vip.startDate}
+                    </if>
+                    <if test="vip.endDate !=null and vip.endDate != ''">
+                       and cdDate &lt;= #{vip.endDate}
+                    </if>-->
+
+
+        <if test=" vip.vip_lv != null and vip.vip_lv != ''">
+            and vip_lv = #{vip.vip_lv}
+        </if>
+
+        <if test=" vip.vip_sex != null and vip.vip_sex != ''">
+            and vip_sex = #{vip.vip_sex}
+        </if>
+        limit #{start} ,#{pageSize}
+
+    </sql>
+
+
+    <select id="queryVip"  resultType="com.jk.model.Vip">
+
+        select * from vip where 1=1
+
+
+    </select>
+
+
+    <select id="findBootDialogById" parameterType="String" resultType="com.jk.model.Vip">
+
+        select * from vip where vip_id=${value}
+
+    </select>
+
+
+    <insert id="save" parameterType="com.jk.model.Vip">
+
+      insert into  vip (vip_cdnumber,vip_name,vip_sex,vip_lv,vip_phone,jifen,xiaofeiNumber,cdNumber,cdDate) values
+      (#{vip_cdnumber},#{vip_name},#{vip_sex},#{vip_lv},#{vip_phone},#{jifen},#{xiaofeiNumber},#{cdNumber},#{cdDate})
+
+
+    </insert>
+
+    <delete id="delOne" parameterType="String">
+
+        delete  from vip  where vip_id=${value}
+    </delete>
+
+
+
+    <update id="update" parameterType="com.jk.model.Vip">
+
+      update vip  set
+              vip_cdnumber=#{vip_cdnumber} , vip_name=#{vip_name} ,vip_sex=#{vip_sex} ,
+              vip_lv=#{vip_lv} ,vip_phone=#{vip_phone} ,jifen=#{jifen} ,
+              xiaofeiNumber=#{xiaofeiNumber} ,cdNumber=#{cdNumber} ,cdDate=#{cdDate}
+
+              where vip_id = #{vip_id}
+
+    </update>
+
+
+
+
+</mapper>

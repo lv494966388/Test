@@ -1,0 +1,30 @@
+
+server:
+  port: 8762
+
+
+
+spring:
+  application:
+    name: spring-cloud-provider
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/lwb?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+mybatis:
+  mapper-locations: mapper/*.xml
+
+
+
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+
+

@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+
+    <style type="text/css">
+        body {padding-top:55px;
+           background-image:url('');
+            background-position: center 0;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            -moz-background-size: cover;
+            -ms-background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+<div class="row">
+    <div class="col-md-3">
+        <a class="list-group-item" data-addtab="userMenu" data-target="#tabs" data-url="http://www.baidu.com">
+            导航菜单栏
+        </a>
+        <!-- tree 的插件 -->
+        <div id="treeDiv"></div>
+    </div>
+    <div class="col-md-9">
+        <!--   选项卡    -->
+        <!-- Nav tabs -->
+        <ul id="tabs" class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#home" aria-controls="home" role="tab" data-toggle="tab">欢迎</a></li>
+        </ul>
+        <!-- 选项卡  内容 -->
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel"  class="tab-pane active " id="home" >欢迎 机油</div>
+
+        </div>
+
+
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $(function (){
+        $.addtabs({iframeHeight:870});
+
+
+        $.ajax({
+            url : "getTree",
+            type : "get",
+            dataType : "json",
+            success : function (data){
+                $("#treeDiv").treeview({
+                    //data属性 树节点信息 json数组
+                    data: data,
+                    //tree默认展开的节点级别默认为2
+                    levels: 0,
+                    //含有子节点的图标
+                    collapseIcon:'glyphicon glyphicon-star-empty',
+                    //没有子节点的图标
+                    emptyIcon:'glyphicon glyphicon-usd',
+                    //背景颜色
+                    //backColor: 'green'
+                    //是否显示复选框
+                    showCheckbox:false,
+                    //是否允许选中多个节点
+                    //multiSelect:true,
+                    //启用节点的超链接功能默认为false,节点需指定href属性
+                    enableLinks:false,
+                    //事件当节点选中时
+                    onNodeSelected:function(event,node){
+                        //动态向 nav-tabs 导航标签添加tab选项卡
+                        //addTabs方法  add() 添加tab  close()关闭tab  closeAll() 关闭全部tab
+                        //alert(node.url);
+                        if(null !=  node.url){
+                            $.addtabs.add({
+                                id:node.id,
+                                title:node.text,
+                                url:node.url,
+                            })
+                        }
+                    }
+                })
+            },error : function (){
+                alert("查询树失败");
+            }
+        })
+
+
+
+
+
+
+
+
+    });
+
+
+</script>
+</html>

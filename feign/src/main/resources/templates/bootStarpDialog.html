@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+<form id="mongoForm">
+    <input type="hidden"   name="vip_id" th:value="${vip.vip_id}" >
+    <div class="form-group">
+        <label for="vip_cdnumber">会员卡号</label>
+        <input type="text" class="form-control" id="vip_cdnumber" th:value="${vip.vip_cdnumber}"  name="vip_cdnumber"   placeholder="会员卡号">
+    </div>
+    <div class="form-group">
+        <label for="vip_name">名字</label>
+        <input type="text" name="vip_name" id="vip_name"th:value="${vip.vip_name}" class="form-control" placeholder="名字" />
+    </div>
+
+
+    <div class="form-group">
+       <input type="radio" name="vip_sex" value="1" >男
+       <input type="radio" name="vip_sex" value="2" >女
+    </div>
+
+
+
+
+    <div class="form-group">
+       <select name="vip_lv" th：value="${vip.vip_lv}">会员等级
+
+                <option value="" >请选择</option>
+                <option value="1" th:selected="${vip.vip_lv==1}">青铜</option>
+                <option value="2" th:selected="${vip.vip_lv==2}">黄金</option>
+                <option value="3" th:selected="${vip.vip_lv==3}">白金</option>
+       </select>
+    </div>
+    <div class="form-group">
+        <label for="vip_phone">手机号码</label>
+        <input type="text" name="vip_phone" id="vip_phone"th:value="${vip.vip_phone}" class="form-control" placeholder="手机号码" />
+    </div>
+
+    <div class="form-group">
+        <label for="jifen">积分</label>
+        <input type="number" name="jifen" id="jifen"th:value="${vip.jifen}" class="form-control" placeholder="积分" />
+    </div>
+
+    <div class="form-group">
+        <label for="xiaofeiNumber">消费总额</label>
+        <input type="number" name="xiaofeiNumber" id="xiaofeiNumber"th:value="${vip.xiaofeiNumber}" class="form-control" placeholder="消费总额" />
+    </div>
+
+    <div class="form-group">
+        <label for="cdNumber">卡内余额</label>
+        <input type="number" name="cdNumber"id="cdNumber" th:value="${vip.cdNumber}" class="form-control" placeholder="卡内余额" />
+    </div>
+
+
+    <div class="form-group">
+        <label for="cdDate">开卡时间</label>
+        <input class="form-control"  name="cdDate" id="cdDate"onFocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" th:value="${vip.cdDate}"/>
+    </div>
+
+
+
+</form>
+
+
+</body>
+</html>
