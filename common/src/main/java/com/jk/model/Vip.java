@@ -1,11 +1,11 @@
 package com.jk.model;
 
 
-import lombok.Data;
+
 
 import java.io.Serializable;
 
-@Data
+
 public class Vip implements Serializable {
 
     private static final long serialVersionUID =2L;
@@ -126,7 +126,6 @@ public class Vip implements Serializable {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
-
 
     @Override
     public String toString() {

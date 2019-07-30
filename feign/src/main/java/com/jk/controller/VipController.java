@@ -1,7 +1,5 @@
 package com.jk.controller;
 
-
-
 import com.jk.model.Tree;
 import com.jk.model.Vip;
 import com.jk.service.VipServiceFeign;
@@ -14,99 +12,56 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-
 public class VipController {
-
     @Autowired
-
-
     private VipServiceFeign vipServiceFeign;
-
-
-
 
     @RequestMapping("findBootstrap")
     @ResponseBody
-    public HashMap<String, Object> findBootstrap(Integer start, Integer pageSize){
-
-
-        HashMap<String, Object> map =vipServiceFeign.findBootstrap(start,pageSize);
+    public HashMap<String, Object> findBootstrap(Integer start, Integer pageSize) {
+        HashMap<String, Object> map = vipServiceFeign.findBootstrap(start, pageSize);
         return map;
+    }/*打开新增弹框 或者 修改回显*/
 
-
-
-    }
-
-    //打开新增弹框 或者 修改回显
     @RequestMapping("findBootDialogById/{id}")
-
-    public ModelAndView findBootDialogById(@PathVariable String id, ModelMap modelMap){
-
+    public ModelAndView findBootDialogById(@PathVariable String id, ModelMap modelMap) {
         Vip vip = vipServiceFeign.findBootDialogById(id);
-
-
-
-
-        ModelAndView mv = new ModelAndView("bootStarpDialog");
-
-        mv.addObject(vip);
-
+        ModelAndView mv = new ModelAndView("bootStarpDialog").addObject(vip);
         return mv;
-
-
-
-
     }
 
     @RequestMapping("save")
-    public void save(Vip vip){
+    public void save(Vip vip) {
         vipServiceFeign.save(vip);
-
     }
 
     @RequestMapping("update")
-    public void update(Vip vip){
+    public void update(Vip vip) {
         vipServiceFeign.update(vip);
-
     }
-
 
     @RequestMapping("delete")
     @ResponseBody
-    public void deleteGname(@RequestParam(value="ids")String ids){
+    public void deleteGname(@RequestParam(value = "ids") String ids) {
         String[] idss = ids.split(",");
-        for (String id : idss) {
-            vipServiceFeign.delOne(id);
+        for (String id : idss) vipServiceFeign.delOne(id);
+    }/*测试框架*/
 
-        }
-
-    }
-
-
-
-
-
-    //测试框架
     @GetMapping("getNews")
-    public String getNews(){
+    public String getNews() {
         return vipServiceFeign.getNews();
-    }
+    }/*同步树*/
 
-
-
-    //同步树
     @RequestMapping("getTree")
     @ResponseBody
-    public List<Tree> getTree(){
+    public List<Tree> getTree() {
         Integer id = 666;
-        List<Tree>  treeNode = treeNode(id);
+        List<Tree> treeNode = treeNode(id);
         return treeNode;
     }
 
-    private List<Tree> treeNode(Integer id) {
-        //根据id查询子节点
-        List<Tree>  treeList = vipServiceFeign.queryTreeNode(id);
-        //for循环得到每一个id值  作为下一次查询pid的条件
+    private List<Tree> treeNode(Integer id) {/*根据id查询子节点*/
+        List<Tree> treeList = vipServiceFeign.queryTreeNode(id);/*for循环得到每一个id值  作为下一次查询pid的条件*/
         for (Tree treeBean : treeList) {
             Integer id2 = treeBean.getId();
             List<Tree> treeNode = treeNode(id2);
@@ -114,7 +69,4 @@ public class VipController {
         }
         return treeList;
     }
-
-
-
 }
