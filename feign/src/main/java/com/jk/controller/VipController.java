@@ -18,8 +18,6 @@ import java.util.List;
 public class VipController {
 
     @Autowired
-
-
     private VipServiceFeign vipServiceFeign;
 
     @RequestMapping("findBootstrap")
