@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 @Data
 public class Vip implements Serializable {
-
     private static final long serialVersionUID =2L;
     private Integer vip_id;  //序号
     private String vip_cdnumber;//卡号
@@ -18,15 +17,9 @@ public class Vip implements Serializable {
     private Integer jifen;// 积分
     private Integer xiaofeiNumber;// 消费金额
     private Integer cdNumber;//余额
-
-
     private String cdDate;//开卡时间
-
-
     private String startDate;//开卡时间
     private String endDate;//开卡时间
-
-
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
