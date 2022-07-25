@@ -22,40 +22,21 @@ public class VipController {
 
     private VipServiceFeign vipServiceFeign;
 
-
-
-
     @RequestMapping("findBootstrap")
     @ResponseBody
     public HashMap<String, Object> findBootstrap(Integer start, Integer pageSize){
-
-
         HashMap<String, Object> map =vipServiceFeign.findBootstrap(start,pageSize);
         return map;
-
-
-
     }
 
     //打开新增弹框 或者 修改回显
     @RequestMapping("findBootDialogById/{id}")
 
     public ModelAndView findBootDialogById(@PathVariable String id, ModelMap modelMap){
-
         Vip vip = vipServiceFeign.findBootDialogById(id);
-
-
-
-
         ModelAndView mv = new ModelAndView("bootStarpDialog");
-
         mv.addObject(vip);
-
         return mv;
-
-
-
-
     }
 
     @RequestMapping("save")
