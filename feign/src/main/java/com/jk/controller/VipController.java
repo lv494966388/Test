@@ -36,6 +36,8 @@ public class VipController {
         mv.addObject(vip);
 
         System.out.println("将主分支合并到dev");
+        System.out.println("将dev 合并到主分支");
+
         return mv;
     }
 
