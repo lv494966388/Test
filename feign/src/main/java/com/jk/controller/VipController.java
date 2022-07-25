@@ -34,6 +34,7 @@ public class VipController {
         Vip vip = vipServiceFeign.findBootDialogById(id);
         ModelAndView mv = new ModelAndView("bootStarpDialog");
         mv.addObject(vip);
+        System.out.println("将dev 合并到主分支");
         return mv;
     }
 
