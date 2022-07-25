@@ -12,9 +12,7 @@ public class PageController {
 
     @RequestMapping(value="/toMain", method= RequestMethod.GET)
     public ModelAndView toMain(){
-
         ModelAndView mv = new ModelAndView("main");
-
         return mv;
     }
 
@@ -22,11 +20,7 @@ public class PageController {
     @RequestMapping(value="/toShow", method= RequestMethod.GET)
     public ModelAndView  toShow(){
         ModelAndView mv = new ModelAndView("VipShow");
-
         return mv;
-
-
-
     }
 
 
@@ -34,15 +28,7 @@ public class PageController {
     @RequestMapping(value="/toadd", method= RequestMethod.GET)
     public ModelAndView  toadd(){
         ModelAndView mv = new ModelAndView("add");
-
         return mv;
 
-
-
     }
-
-
-
-
-
 }
